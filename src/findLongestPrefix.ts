@@ -1,10 +1,16 @@
-function findLongestPrefix(strs: string[]): string {
-  if (strs.length === 0) {
-    return ""
-  }
+export function findLongestPrefix(strs: string[]): string {
+  // no need to check, follow by Constraints: * 1 <= strs.length <= 200
+  // if (strs.length === 0) {
+  //   return ""
+  // }
 
   let low = 0
   let high = Math.min(...strs.map((str) => str.length))
+
+  if (high === 0) {
+    // follow by Constraints: * 0 <= strs[i].length <= 200
+    return ""
+  }
 
   while (low <= high) {
     const mid = Math.floor((low + high) / 2)
@@ -24,5 +30,3 @@ function isPrefix(strs: string[], len: number): boolean {
 
   return strs.every((str) => str.startsWith(prefix))
 }
-
-export default findLongestPrefix
