@@ -9,10 +9,7 @@ function findLongestPrefix(strs: string[]): string {
   while (low <= high) {
     const mid = Math.floor((low + high) / 2)
 
-    const prefix = strs[0].substring(0, mid)
-    const isPrefix = strs.every((str) => str.startsWith(prefix))
-
-    if (isPrefix) {
+    if (isPrefix(strs, mid)) {
       low = mid + 1
     } else {
       high = mid - 1
@@ -20,6 +17,12 @@ function findLongestPrefix(strs: string[]): string {
   }
 
   return strs[0].substring(0, (low + high) / 2)
+}
+
+function isPrefix(strs: string[], len: number): boolean {
+  const prefix = strs[0].substring(0, len)
+
+  return strs.every((str) => str.startsWith(prefix))
 }
 
 export default findLongestPrefix
